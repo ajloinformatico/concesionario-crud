@@ -35,6 +35,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/style_grud.css" type="text/css"/>
+        <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet"> <!--load awesome styles -->
     </head>
     <body>
         <header>
