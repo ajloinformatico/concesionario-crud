@@ -35,7 +35,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/style_grud.css" type="text/css"/>
-        <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet"> <!--load awesome styles -->
     </head>
     <body>
         <header>
@@ -61,8 +60,10 @@
                 //Comprueba si el coche se ha registrado o no satisfactoriamente
                 if(isset($_GET['matriculaInvalida'])){
                     ?> 
-                        <script>  alert("La matrícula " +'<?php echo $_GET['matriculaInvalida']?>' + " no es válida")</script>
+                        <script>  alert("Error:\nDatos no válidos por favor vuelva a intentarlo")</script>
                     <?php
+                
+                //Confirma si se desea eliminar un elemento
                 }
 
 
@@ -74,6 +75,7 @@
         <main>
             <h2>Area personal</h2>
             <section class="show_edit_delete">
+                <!--Imprime la tabla con los coches y los botones-->
                 <?php
                     $enlace = con();
                     $rs = consulta($enlace, "coches");
@@ -83,7 +85,7 @@
                 ?>
                 
                 
-                <!--Modal AÑADIR-->
+                <!--Modal AÑADIR con css se muestra si se pulsa el check box se abre. En el modal si se pulsa la imágen se cierra al estar asociada con el label del check box-->
                 <input type='checkbox' id='btn-modal'/>
                 <label for='btn-modal' class='lbl-modal'><img alt='anadir' class='modal_img' src='img/add.png'></img></label>
                 <?php
@@ -94,6 +96,25 @@
                         ?>
                             <script>
                             document.getElementById('btn-modal').click();
+                            </script>
+                        <?php
+
+
+                    //Si se pulsa el ELIMINAR
+                    }elseif(isset($_GET['eliminar'])){
+                        //En un confirm() de js pregunta si eliminar si se confirma envia a anadir_eliminar para eliminar si no recarga la página
+                        
+                        $rs =consulta($enlace, "coches");
+                        $consulta = dame_una_matricula($rs, $_GET['contador']);
+                        
+                        ?>
+                            <script>
+                                if(window.confirm("Estas seguro de que quieres eliminar\nel coche con matrícula: " + <?php echo $consulta['matricula'];?>)){
+                                    window.location.replace("http://localhost:80/anadir_eliminar.php?contador="+ <?php echo $_GET['contador'];?> + "&eliminar=yes");
+                                }else{
+                                    alert("El registro no será eliminado");
+                                    window.location.replace("http://localhost:80/grud.php")
+                                }
                             </script>
                         <?php
                     }
@@ -109,12 +130,13 @@
                         <!--El label con la x se usa a modo de botón le he puesto el mismo nombre que el inoput para que cuando
                             se pulse este se cambie el valor del check box
                         -->
-                            <label class='btn-salir-modal' for='btn-modal'>X</label><!--Mismo nombre del input PARA EL BOTÓN DE CERRAR-->
+                        <!--<a class='enlace-ir-atras' href="grud.php">X</a>-->
+                            <label  for='btn-modal'><a class='btn-salir-modal' href="grud.php">X</a></label><!--Mismo nombre del input PARA EL BOTÓN DE CERRAR-->
                         </header>
                         
                         <div class="contenido">
                             <form class='formulario' action='anadir_eliminar.php' method='POST' enctype="multipart/form-data" autocomplete="on">
-                                <!--Campos ocultos para el update-->
+                                <!--Campos ocultos para el update es el que llega por post-->
                                 <input type="hidden" id="oculto" name="oculto" value="<?php echo$_GET['edita'];?>">
                                 <input type="hidden" id="amatricula" name="amatricula" value="<?php echo$consulta['matricula'];?>">
                                 

@@ -165,7 +165,11 @@ body .modal{
     padding-right: 15px;
     color: red;
     font-size: 20pt;
-    cursor: pointer; /*NUEVOO CAMBIA EL RATÓN CUANDO PASA POR ENCIMA*/
+    text-decoration: none;
+    /*cursor: pointer; /*NUEVOO CAMBIA EL RATÓN CUANDO PASA POR ENCIMA*/
+}
+.btn-salir-modal:hover{
+    color:black;
 }
 
 /*CON EL ID DEL CHECKBOX LE QUITO EL DISPLAY Y SOLO SE VE LA IMAGEN DEL LABERL*/

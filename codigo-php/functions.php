@@ -69,12 +69,13 @@ function imprimeCoches($rs){
                 continue;
             }
         }
+        //Por cada vuelta imprime dos imágenes para editar y eliminar la de editar envia por get editar si con js se muestra el formulario con un campo oculto edita y los datos a partir del contador
+        //La de eliminar envia el contador que va sumando por vuelta y eliminar=si con el contador después se elimina 
         echo"
-        <td><a href='anadir_eliminar.php?contador=" . $contador . "&eliminar=si' alt='eliminar' title='pulsa para eliminar'><img class='modal_img' src='img/delete.png' alt='eliminar'/></a>
+        <td><a href='grud.php?contador=" . $contador . "&eliminar=si' alt='eliminar' title='pulsa para eliminar'><img class='modal_img' src='img/delete.png' alt='eliminar'/></a>
         </td>
         <td>
-        <!--<a href='#editar'  data-toggle='modal' data-target='#modal_edita'> <img alt='editar' title='edita el registro' class='modal_img' src='img/ed.png'></img></a>-->
-        <a href='grud.php?edita=yes'><img alt='editar'  data-target='#modal_edita' class='modal_img' src='img/ed.png'/></a>
+        <a href='grud.php?edita=yes&contador=" . $contador . "'><img alt='editar'  data-target='#modal_edita' class='modal_img' src='img/ed.png'/></a>
         </td>
         ";
         
@@ -217,14 +218,15 @@ function dame_una_matricula($consulta, $contador){
     return $fila;
 }
 
-
+/**
+ * Elimina un coche a partir de una consulta, un contador y un enlace
+ */
 function elimina($consulta, $contador, $enlace){
     //DELETE FROM `coches` WHERE `coches`.`matricula` = '1111111';
     try{
         
-        $matric = dame_una_matricula($consulta, $contador);
+        $matric = dame_una_matricula($consulta, $contador); //obtiene a partir del contador justo el registro con el coche que se deseea eliminar
         $matric = $matric['matricula'];
-        echo"$matric";
         $sql = $enlace->prepare("DELETE  FROM coches WHERE coches.matricula = :matricula");
         $sql->bindParam(':matricula', $matric);
         $sql->execute(); //Preguntar si lo puedo hacer asi
