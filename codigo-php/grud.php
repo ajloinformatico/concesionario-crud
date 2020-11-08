@@ -86,8 +86,9 @@
                 
                 
                 <!--Modal AÑADIR con css se muestra si se pulsa el check box se abre. En el modal si se pulsa la imágen se cierra al estar asociada con el label del check box-->
+                <br>
                 <input type='checkbox' id='btn-modal'/>
-                <label for='btn-modal' class='lbl-modal'><img alt='anadir' class='modal_img' src='img/add.png'></img></label>
+                <label for='btn-modal' class='lbl-modal'><span class='far fa-plus-square fa-2x' style='color:black; cursor: pointer;' title='Agrege un nuevo coche'></span></label>
                 <?php
                     if(isset($_GET['edita'])){
                         $rs = consulta($enlace, "coches");
@@ -186,6 +187,8 @@
             I´m open source.
             Copyright © 2020 INFOLOJO</p>
         </footer>
+        <!--FONT AWESOME-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" data-auto-replace-svg="nest"></script>
     </body>
 </html>
 
