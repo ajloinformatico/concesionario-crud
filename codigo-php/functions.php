@@ -72,7 +72,7 @@ function imprimeCoches($rs){
         //Por cada vuelta imprime dos imágenes para editar y eliminar la de editar envia por get editar si con js se muestra el formulario con un campo oculto edita y los datos a partir del contador
         //La de eliminar envia el contador que va sumando por vuelta y eliminar=si con el contador después se elimina 
         echo"
-        <td><a href='grud.php?contador=" . $contador . "&eliminar=si' alt='eliminar' title='pulsa para eliminar'><span class='fas fa-trash-alt ' alt='eliminar' style='color: black;'></sapn></a>
+        <td><a href='grud.php?contador=" . $contador . "&eliminar=si' alt='eliminar' title='pulsa para eliminar'><span class='fas fa-trash-alt ' alt='eliminar' style='color: black; '></sapn></a>
         </td>
         <td>
         <a href='grud.php?edita=yes&contador=" . $contador . "'><span class='fas fa-edit' alt='eliminar' id='icon' style='color:black;'></sapn></a>

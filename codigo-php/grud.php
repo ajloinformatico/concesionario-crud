@@ -35,6 +35,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/style_grud.css" type="text/css"/>
+        <!--My Scripts-->
+        <script src="js/scripts.js"></script>
     </head>
     <body>
         <header>
@@ -60,7 +62,9 @@
                 //Comprueba si el coche se ha registrado o no satisfactoriamente
                 if(isset($_GET['matriculaInvalida'])){
                     ?> 
-                        <script>  alert("Error:\nDatos no válidos por favor vuelva a intentarlo")</script>
+                        <script>
+                            error();
+                        </script>
                     <?php
                 
                 //Confirma si se desea eliminar un elemento
@@ -85,37 +89,34 @@
                 ?>
                 
                 
-                <!--Modal AÑADIR con css se muestra si se pulsa el check box se abre. En el modal si se pulsa la imágen se cierra al estar asociada con el label del check box-->
+                
                 <br>
                 <input type='checkbox' id='btn-modal'/>
                 <label for='btn-modal' class='lbl-modal'><span class='far fa-plus-square fa-2x' style='color:black; cursor: pointer;' title='Agrege un nuevo coche'></span></label>
                 <?php
+                    //Si recibe 
                     if(isset($_GET['edita'])){
                         $rs = consulta($enlace, "coches");
                         $consulta = dame_una_matricula($rs, $_GET['contador']);
                         //Muestra el mofal
                         ?>
                             <script>
-                            document.getElementById('btn-modal').click();
+                            muestraModal();
                             </script>
                         <?php
 
 
                     //Si se pulsa el ELIMINAR
                     }elseif(isset($_GET['eliminar'])){
-                        //En un confirm() de js pregunta si eliminar si se confirma envia a anadir_eliminar para eliminar si no recarga la página
-                        
                         $rs =consulta($enlace, "coches");
                         $consulta = dame_una_matricula($rs, $_GET['contador']);
+                        //En un confirm() de js pregunta si eliminar si se confirma envia a anadir_eliminar para eliminar si no recarga la página
                         
                         ?>
                             <script>
-                                if(window.confirm("Estas seguro de que quieres eliminar\nel coche con matrícula: " + <?php echo $consulta['matricula'];?>)){
-                                    window.location.replace("http://localhost:80/anadir_eliminar.php?contador="+ <?php echo $_GET['contador'];?> + "&eliminar=yes");
-                                }else{
-                                    alert("El registro no será eliminado");
-                                    window.location.replace("http://localhost:80/grud.php")
-                                }
+                                //Para asignarle un valor php a js importante las comillas arriba
+                                eliminaCoche('<?php echo $consulta['matricula'];?>', '<?php echo $_GET['contador'];?>');
+                              
                             </script>
                         <?php
                     }
@@ -189,6 +190,7 @@
         </footer>
         <!--FONT AWESOME-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" data-auto-replace-svg="nest"></script>
+        
     </body>
 </html>
 
