@@ -1,0 +1,281 @@
+:root{
+
+    --font-size: 11pt;
+    --font-size-special: 13pt;
+
+    --mouse-is-over-normal: linear 0.1s;
+    --mouse-is-hover-mormal:color  0.1s linear 0.1s;
+}
+
+html{
+    display: block;
+    font-family: sans-serif;
+    text-align: justify;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    min-width: 350px;
+    margin: 0;
+
+}
+
+header{
+    background-color: black;
+    color: white;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+}
+header h1{
+    text-align: center;
+
+
+}
+.info_loging div img{
+    width: 50px;
+    height: 50px;
+    float: right;
+    margin-right: 1em;
+    margin-top: .5em;
+}
+
+/*Nombre de usuario sesión iniciada*/
+.info_loging h2{
+    margin-left: 1em;
+    float: left;
+    color: green;
+}
+/*No hay sesión*/
+.no_sesion{
+    text-align: center;
+    font-size: 14pt;
+}
+.no_sesion p{
+    color: red;
+}
+
+main{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
+
+
+main h2{
+    float: center;
+    margin-top: 3em;
+    text-align: center;
+}
+
+.show_edit_delete{
+    margin-top: 1em;
+    text-align: center;
+}
+
+
+.show_edit_delete table{ 
+    border: solid 2px black;
+    margin: 0 auto;
+    padding: 1em;
+    width: 70%;
+    background-color: antiquewhite;
+}
+
+.show_edit_delete tr td{
+    padding-left: 1%;
+    padding-right: 1%;
+    text-align: center;
+    padding-bottom: 1em;
+}
+
+
+
+
+
+/*Modal*/
+body .modal{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Posición del modal siempre en el centro*/
+.modal{
+   
+    position: fixed;
+    top: 0;
+    left: 0;
+    /*Pone oscuro el fonddo el último valor es para la transparencia*/
+    background-color: RGBA(0,0,0,0.5);
+    /*Efecto de transición*/
+    transition: all 500ms ease;
+
+    /*MAS IMPORTANTE ES LO QUE OCULTA EL MODAL*/
+    opacity: 0;
+    visibility: hidden;
+}
+/*CUANDO EL BTON ESTE CHEKED MUESTRA TODO EL MODAL*/
+#btn-modal:checked ~ .modal{
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+
+
+
+
+
+/*Estilo del modal*/
+.contenedor{
+    text-align: left;
+    
+    width: 400px;
+    height: 300px;
+    margin: auto; /*Centra el contenido*/
+    background-color: white;
+    box-shadow: 1px 7px 25px rgba(0,0,0,0.6);/*Sombra*/
+    transition: all 500ms ease;
+}
+
+/*Estilo de la cabezera coloco un display block para alinear en una linea los elementos*/
+.contenedor header{
+    display: block;
+    background: black;
+    color: white;
+
+}
+/*Estilo del titulo le digo que flote a la izquierda*/
+.contenedor header h3{
+    float: left;
+    padding-left: 15px
+}
+
+
+/*Estilo del botón quiero colocarlo a la derecha del header por eso de la posición absoluta*/
+.btn-salir-modal{
+    float: right;
+    padding-top: 17px;
+    padding-right: 15px;
+    color: red;
+    font-size: 20pt;
+    text-decoration: none;
+    /*cursor: pointer; /*NUEVOO CAMBIA EL RATÓN CUANDO PASA POR ENCIMA*/
+}
+.btn-salir-modal:hover{
+    color:black;
+}
+
+/*CON EL ID DEL CHECKBOX LE QUITO EL DISPLAY Y SOLO SE VE LA IMAGEN DEL LABERL*/
+#btn-modal{
+    display: none;
+}
+.modal_img{
+    cursor: pointer;
+}
+
+.btn-editar{
+    display: none;
+}
+
+
+
+
+
+
+
+/*Botones*/
+button{
+    height: 3em;
+    font-size: 10pt;
+    font-weight: bold;
+    margin: 1em;
+    transition: var(--mouse-is-over-normal); /*when the mouse is removed*/
+    cursor: pointer;
+}
+button:hover{
+    background-color:black;
+    margin:2em;
+    color: white;
+    transition: var(--mouse-is-hover-normal); /*when the mouse is over*/
+    font-weight: bolder;
+    
+}
+
+/*Formularios*/
+
+form{
+    text-align: center;
+    padding: 5%;
+    background-color: rgb(46, 45, 45);
+    color: white;
+    border-left: 4px solid black;
+    border-right: 4px solid black;
+    border-bottom: 4px solid black;
+}
+
+label{
+    font-weight: bold;
+}
+
+input{
+    margin-bottom: 2em;
+}
+form button{
+    margin: 0;
+}
+form button:hover{
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+/*footer*/
+footer{
+   
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    
+
+    padding: .5em;
+    background-color: black;
+    color: white;
+    font-size: var(--font-size-special);
+}
+
+footer a{
+    text-decoration: none;
+    color: #22edb4;
+    font-weight: bold;
+    transition: var(--mouse-is-over-normal);
+    cursor: pointer;
+}
+
+footer a:hover{
+    background-color: white;
+    color: black;
+    transition: var(--mouse-is-hover-mormal);
+}
+
+
+/*Clases extra*/
+.verde{
+    color: green;
+}
+
+.rojo{
+    color: red;
+}
