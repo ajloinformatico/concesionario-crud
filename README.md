@@ -1,5 +1,6 @@
 # concesionario-crud
  It is  a simple crud developed in php. Without frameworks. Using only HTML, CSS and PHP
+ (a little bit of js too)
 # run
  To run it you need: 
  <lo>
