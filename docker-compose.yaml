@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  servidor-php:
+  servidor-php: #APACHE 
     image: fjortegan/dwes:php
     stdin_open: true # docker run -i
     tty: true        # docker run -t
